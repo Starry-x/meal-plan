@@ -124,7 +124,7 @@ details[open] .more::after { content: " ▴"; }
 <header class="top wrap">
   <h1>减脂两周食谱</h1>
   <div class="chips">
-    <span class="chip">1 人份 · 约 <b>1240</b> kcal/天</span>
+    <span class="chip"><b>2</b> 人份采购 · 每人约 <b>1240</b> kcal/天</span>
     <span class="chip">高蛋白 · 少油少糖</span>
     <span class="chip">避开<b>十字花科</b>和海带紫菜</span>
   </div>
@@ -157,7 +157,7 @@ details[open] .more::after { content: " ▴"; }
       <p class="note" id="kcal"></p>
       <div id="meals" style="display:grid;gap:12px"></div>
       <div class="callout">
-        <div>烹饪油每天 15g 以内（约 1.5 小勺，最好用油壶喷）。热量是按食物成分表估算的，饿得难受就加一份蔬菜或一个鸡蛋，别加主食。</div>
+        <div>烹饪油每人每天 15g 以内（约 1.5 小勺，最好用油壶喷）。热量是按食物成分表估算的，饿得难受就加一份蔬菜或一个鸡蛋，别加主食。</div>
       </div>
     </div>
   </section>
@@ -165,7 +165,7 @@ details[open] .more::after { content: " ▴"; }
   <section id="v-shop" hidden>
     <div style="display:grid;gap:12px">
       <div class="days" id="shopDays"></div>
-      <div class="progress"><span>点选要买哪几天的菜，可以多选</span><span><button id="pickAll">整周</button><button id="pickNone">都不选</button></span></div>
+      <div class="progress"><span>点选要买哪几天的菜，可以多选。数量已按 2 人份算</span><span><button id="pickAll">整周</button><button id="pickNone">都不选</button></span></div>
       <p class="note">叶菜放不了几天，建议一次买 2–3 天的；肉可以一次买齐，分装冷冻。</p>
       <div class="progress"><span id="progress"></span><button id="reset">清空勾选</button></div>
       <div class="shop" id="shop"></div>
@@ -295,6 +295,7 @@ const WEEKS = [
 ];
 // 每单位热量 kcal（g/ml 按每克，个/根/片/朵按每个），参考中国食物成分表的可食部分
 const K = { 糙米: 3.5, 大米: 3.46, 燕麦: 3.7, 全麦面包: 90, 鸡蛋: 70, 玉米: 160, 红薯: 0.86, 苹果: 100, 小番茄: 0.25, 无糖酸奶: 0.7, 牛奶: 0.6, 原味坚果: 6, 黄瓜: 30, 鸡胸肉: 1.33, 瘦牛肉: 1.2, 猪里脊: 1.55, 虾仁: 0.9, 巴沙鱼: 0.9, 龙利鱼: 0.8, 北豆腐: 1.0, 荞麦面: 3.4, 番茄: 35, 芦笋: 0.2, 荷兰豆: 0.3, 丝瓜: 50, 生菜: 0.15, 菠菜: 0.28, 青椒: 25, 芹菜: 0.17, 香菇: 4, 油麦菜: 0.15, 胡萝卜: 60, 冬瓜: 0.12, 洋葱: 80, 西葫芦: 55, 绿豆芽: 0.18, 干木耳: 2.6 };
+const PEOPLE = 2; // 采购清单按几人份算；菜单上的分量和热量都是每人
 const OIL = 15, TARGET = 1240; // 每天烹饪油 15g ≈ 135 kcal，算在总量里
 const kcal = d => OIL * 9 + ["b", "l", "d", "s"].flatMap(k => d[k]).flatMap(k => D[k][1]).reduce((sum, it) => { const [n, q] = parse(it); return sum + K[n] * q; }, 0);
 // 「换一批」：按方案号用固定随机数搭配，同一个号在任何手机上结果都一样；0 是上面手排的默认方案
@@ -387,7 +388,7 @@ function renderMenu() {
     `<button data-day="${i}" class="${i === TODAY ? "today" : ""}" aria-pressed="${i === state.day}">${d}<small>${i === TODAY ? "今天" : "&nbsp;"}</small></button>`).join("");
   $("seed").value = state.seed;
   const d = PLAN[state.week][state.day];
-  $("kcal").textContent = `这天约 ${Math.round(kcal(d) / 10) * 10} kcal（含 ${OIL}g 烹饪油）`;
+  $("kcal").textContent = `每人份量。这天每人约 ${Math.round(kcal(d) / 10) * 10} kcal（含 ${OIL}g 烹饪油）`;
   $("meals").innerHTML = MEALS.map(([k, label, hint]) => `
     <article class="meal"><div class="meal-head"><h2>${label}</h2><span>${hint}</span></div>
       ${d[k].map(dishHTML).join("")}</article>`).join("");
@@ -398,7 +399,7 @@ const shopHTML = (t, checked = {}) => Object.entries(CATS).map(([cat, names]) =>
   if (!rows.length) return "";
   return `<h3>${cat}</h3>` + rows.map(([k, q]) => {
     const [name, unit] = k.split("|");
-    return `<label><span class="nm"><input type="checkbox" data-k="${esc(k)}" ${checked[k] ? "checked" : ""}><span>${esc(name)}</span></span><span class="q">${+q.toFixed(1)}${esc(unit)}</span></label>`;
+    return `<label><span class="nm"><input type="checkbox" data-k="${esc(k)}" ${checked[k] ? "checked" : ""}><span>${esc(name)}</span></span><span class="q">${+(q * PEOPLE).toFixed(1)}${esc(unit)}</span></label>`;
   }).join("");
 }).join("");
 
