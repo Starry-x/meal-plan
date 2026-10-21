@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>减脂两周食谱</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- 非阻塞加载：国内打不开 Google Fonts 时直接用系统字体，不会卡白屏 -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap" media="print" onload="this.media='all'">
+<style>
+/* 布局：手机优先的单列工具页；顶部固定三个视图切换，内容是一张张"餐卡" */
+:root {
+  --bg: #f1f5ef; --surface: #ffffff; --ink: #1d2a24; --muted: #5d6d64; --line: #d8e2d8;
+  --accent: #1f7a5c; --accent-ink: #ffffff; --yolk: #f2c14e; --soft: #e4eee6;
+  --display: var(--body);
+  --body: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111814; --surface: #19221d; --ink: #e3ece6; --muted: #92a399; --line: #2a3630;
+    --accent: #5cc49a; --accent-ink: #0c1612; --yolk: #e0b243; --soft: #1f2b25; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111814; --surface: #19221d; --ink: #e3ece6; --muted: #92a399; --line: #2a3630;
+  --accent: #5cc49a; --accent-ink: #0c1612; --yolk: #e0b243; --soft: #1f2b25; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.65 var(--body); }
+.wrap { max-width: 760px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+header.top { padding-block: 20px 8px; display: grid; gap: 8px; }
+h1 { font: 600 30px/1.2 var(--display); margin: 0; letter-spacing: .02em; text-wrap: balance; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-size: 12px; padding: 2px 10px; border-radius: 999px; background: var(--soft); color: var(--muted); }
+.chip b { color: var(--ink); font-weight: 600; }
+
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+nav.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
+nav.bar .wrap { display: flex; gap: 8px; align-items: center; padding-block: 10px; flex-wrap: wrap; }
+.seg { display: flex; background: var(--soft); border-radius: 10px; padding: 3px; gap: 2px; }
+.seg button { border: 0; background: transparent; color: var(--muted); font: inherit; font-size: 14px; padding: 6px 12px; border-radius: 8px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); font-weight: 600; box-shadow: 0 1px 2px rgb(0 0 0 / .08); }
+.seg.views { flex: 1; min-width: 220px; }
+.seg.views button { flex: 1; }
+button:focus-visible, summary:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+main { padding-block: 16px 48px; display: grid; gap: 16px; }
+.days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.days button { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 10px; padding: 6px 0; font: inherit; cursor: pointer; display: grid; line-height: 1.2; }
+.days button small { font-size: 11px; color: var(--muted); }
+.days button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.days button[aria-pressed="true"] small { color: inherit; opacity: .8; }
+.days button.today:not([aria-pressed="true"]) { border-color: var(--yolk); box-shadow: inset 0 -3px 0 var(--yolk); }
+
+.meal { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.meal-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; padding: 10px 14px 4px; }
+.meal-head h2 { font: 600 19px/1.3 var(--display); margin: 0; }
+.meal-head span { font-size: 12px; color: var(--muted); }
+details.dish { border-top: 1px solid var(--line); }
+details.dish:first-of-type { border-top: 0; }
+details.dish summary { list-style: none; cursor: pointer; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+details.dish summary::-webkit-details-marker { display: none; }
+.dish-name { font-weight: 600; }
+.dish-amt { display: block; font-size: 12px; color: var(--muted); font-weight: 400; }
+.more { font-size: 12px; color: var(--accent); white-space: nowrap; }
+.more::after { content: " ▾"; }
+details[open] .more::after { content: " ▴"; }
+.how { padding: 0 14px 14px; display: grid; gap: 8px; }
+.how ol { margin: 0; padding-left: 1.3em; display: grid; gap: 4px; max-width: 65ch; }
+.how a { font-size: 13px; color: var(--accent); }
+
+.planbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.planbar label { font-size: 14px; color: var(--muted); }
+.planbar input { width: 6em; padding: 6px 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); font: 500 15px var(--mono); }
+.planbar button { border: 0; background: var(--accent); color: var(--accent-ink); font: inherit; font-weight: 600; padding: 7px 16px; border-radius: 8px; cursor: pointer; }
+.planbar .note { flex-basis: 100%; }
+.note { font-size: 13px; color: var(--muted); margin: 0; max-width: 70ch; }
+.callout { background: var(--soft); border-radius: 12px; padding: 12px 14px; font-size: 13px; display: grid; gap: 4px; }
+.callout b { color: var(--ink); }
+
+.shop { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 4px 14px 10px; }
+.shop h3 { font: 600 16px/1.3 var(--display); margin: 14px 0 2px; color: var(--muted); }
+.shop label { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px dashed var(--line); cursor: pointer; }
+.shop label:last-child { border-bottom: 0; }
+.shop .nm { display: flex; gap: 10px; align-items: center; }
+.shop input { width: 20px; height: 20px; accent-color: var(--accent); margin: 0; }
+.shop .q { font: 500 14px var(--mono); font-variant-numeric: tabular-nums; }
+.shop label:has(input:checked) .nm span, .shop label:has(input:checked) .q { text-decoration: line-through; color: var(--muted); }
+.progress { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+.progress button { border: 0; background: none; color: var(--accent); font: inherit; cursor: pointer; padding: 4px; }
+
+.swap { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; display: grid; gap: 6px; }
+.swap h2 { font: 600 19px/1.3 var(--display); margin: 0; }
+.swap ul { margin: 0; padding-left: 1.2em; display: grid; gap: 4px; }
+.swap .eq { font-family: var(--mono); font-size: 13px; }
+.links { display: grid; gap: 8px; }
+.links a { display: block; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; color: var(--ink); text-decoration: none; }
+.links a span { display: block; font-size: 12px; color: var(--muted); }
+.links a:hover { border-color: var(--accent); }
+.pweek { display: grid; gap: 10px; }
+.ptitle { font: 600 22px/1.3 var(--display); margin: 8px 0 0; break-after: avoid; }
+.pday, .precipe { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; break-inside: avoid; }
+.pday h3, .precipe h3 { font: 600 17px/1.3 var(--display); margin: 0 0 4px; display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.pday h3 span { font: 500 13px var(--mono); color: var(--muted); }
+.prow { display: grid; grid-template-columns: 3em 1fr; gap: 6px; padding: 3px 0; border-top: 1px dashed var(--line); font-size: 14px; }
+.prow b { color: var(--muted); font-weight: 500; }
+.prow small, .precipe small { color: var(--muted); font-size: 12px; margin-left: 4px; font-family: var(--body); }
+.precipes { display: grid; gap: 8px; }
+.precipe ol { margin: 0; padding-left: 1.3em; font-size: 14px; }
+.pweek .shop { columns: 2; column-gap: 24px; }
+.pweek .shop h3 { break-after: avoid; }
+.pweek .shop label { padding: 4px 0; break-inside: avoid; }
+@media print { .pweek { break-before: page; } .pweek:first-child { break-before: auto; } }
+@media (prefers-reduced-motion: no-preference) { details.dish[open] .how { animation: drop .18s ease-out; } }
+@keyframes drop { from { opacity: 0; transform: translateY(-4px); } }
+</style>
+
+<header class="top wrap">
+  <h1>减脂两周食谱</h1>
+  <div class="chips">
+    <span class="chip">1 人份 · 约 <b>1240</b> kcal/天</span>
+    <span class="chip">高蛋白 · 少油少糖</span>
+    <span class="chip">避开<b>十字花科</b>和海带紫菜</span>
+  </div>
+</header>
+
+<nav class="bar">
+  <div class="wrap">
+    <div class="seg views" id="views">
+      <button data-view="menu">食谱</button>
+      <button data-view="shop">采购</button>
+      <button data-view="swap">换着吃</button>
+    </div>
+    <div class="seg" id="weeks">
+      <button data-week="0">第 1 周</button>
+      <button data-week="1">第 2 周</button>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section id="v-menu" hidden>
+    <div style="display:grid;gap:12px">
+      <div class="planbar">
+        <label for="seed">方案号</label>
+        <input id="seed" type="number" inputmode="numeric" min="0" max="9999">
+        <button id="reroll">换一批</button>
+        <span class="note">0 是默认方案。想和家人看同一份，就输入同一个号</span>
+      </div>
+      <div class="days" id="days"></div>
+      <p class="note" id="kcal"></p>
+      <div id="meals" style="display:grid;gap:12px"></div>
+      <div class="callout">
+        <div>烹饪油每天 15g 以内（约 1.5 小勺，最好用油壶喷）。热量是按食物成分表估算的，饿得难受就加一份蔬菜或一个鸡蛋，别加主食。</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="v-shop" hidden>
+    <div style="display:grid;gap:12px">
+      <div class="seg" id="ranges" style="align-self:start">
+        <button data-range="all">整周</button>
+        <button data-range="a">周一–周三</button>
+        <button data-range="b">周四–周日</button>
+      </div>
+      <p class="note">叶菜放不了几天，建议分两次买：周一买前 3 天的，周四再补。肉可以一次买齐，分装冷冻。</p>
+      <div class="progress"><span id="progress"></span><button id="reset">清空勾选</button></div>
+      <div class="shop" id="shop"></div>
+      <p class="note"><b>常备调料（不在清单里，家里没有就补）：</b>食用油、生抽、蚝油、醋、盐、黑胡椒、白胡椒、料酒、淀粉、葱、姜、蒜、蒸鱼豉油、零卡糖（可选）</p>
+    </div>
+  </section>
+
+  <section id="v-swap" hidden>
+    <div style="display:grid;gap:12px">
+      <p class="note">吃腻了就按下面的分量替换，热量大致不变。新菜仍然避开西兰花、花菜、包菜、白菜、青菜、菜心、芥蓝、白萝卜、海带、紫菜。</p>
+      <div class="swap">
+        <h2>蛋白质，一份可互换</h2>
+        <ul class="eq">
+          <li>鸡胸肉 150g ≈ 虾仁 180g ≈ 龙利鱼 200g</li>
+          <li>瘦牛肉 120g ≈ 猪里脊 120g ≈ 去皮鸡腿肉 120g</li>
+          <li>鸡蛋 2 个 ≈ 北豆腐 150g（豆腐放午饭或晚饭）</li>
+        </ul>
+      </div>
+      <div class="swap">
+        <h2>主食，一份可互换</h2>
+        <ul class="eq">
+          <li>糙米饭（生米 70g）≈ 荞麦面 70g ≈ 红薯 250g</li>
+          <li>≈ 玉米 1.5 根 ≈ 全麦面包 2.5 片 ≈ 燕麦 60g</li>
+        </ul>
+      </div>
+      <div class="swap">
+        <h2>蔬菜，随便换</h2>
+        <ul>
+          <li>可以吃：生菜、油麦菜、菠菜、茼蒿、芹菜、芦笋、荷兰豆、四季豆、丝瓜、冬瓜、西葫芦、黄瓜、番茄、茄子（少油）、彩椒、蘑菇、豆芽、胡萝卜</li>
+          <li>每天至少 500g，一半是绿叶菜</li>
+        </ul>
+      </div>
+      <div class="swap">
+        <h2>找新菜谱</h2>
+        <div class="links">
+          <a href="https://www.xiachufang.com/search/?keywords=%E5%87%8F%E8%84%82%E9%A4%90" target="_blank" rel="noopener">下厨房 · 减脂餐<span>步骤带图，搜具体菜名也行；每道菜展开后有直达链接</span></a>
+          <a href="https://search.bilibili.com/all?keyword=%E5%87%8F%E8%84%82%E9%A4%90%20%E4%B8%80%E5%91%A8" target="_blank" rel="noopener">B 站 · 一周减脂餐<span>看视频跟着做，适合新手</span></a>
+          <a href="https://www.boohee.com/food/" target="_blank" rel="noopener">薄荷健康 · 食物库<span>查任何食材的热量和蛋白质</span></a>
+          <a href="https://dg.cnsoc.org/" target="_blank" rel="noopener">中国居民膳食指南<span>官方的分量和搭配建议</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+document.documentElement.lang = "zh-CN"; // 发布时 <html> 由外层生成；不声明语言，Linux 会用繁体/日文字形
+// 每样食材写成 "名称 数量单位"，采购清单由此自动汇总
+const STEAM_FISH = ["鱼柳解冻后用厨房纸吸干水，铺几片姜，淋少许料酒。", "水开后上锅蒸 8 分钟。", "倒掉盘里的汤，铺葱丝，淋 1 勺蒸鱼豉油。"];
+const D = {
+  rice: ["糙米饭", ["糙米 25g", "大米 25g"], ["糙米提前泡 2 小时（或前一晚泡上）。", "和大米一起用电饭煲杂粮档煮。", "一次煮 3–4 顿的量，分装冷冻，吃前微波 2 分钟。"]],
+  oat: ["水煮燕麦", ["燕麦 30g"], ["燕麦加 200ml 水，小火煮 3 分钟；或用开水泡 5 分钟。", "买纯燕麦片，配料表只有燕麦，不要带糖的麦片。"]],
+  bread: ["全麦面包", ["全麦面包 1片"], ["选配料表第一位是全麦粉的，烤一下更香。"]],
+  egg2: ["水煮蛋 ×2", ["鸡蛋 2个"], ["冷水下锅，水开后再煮 8 分钟，捞出过冷水更好剥。"]],
+  egg: ["水煮蛋", ["鸡蛋 1个"], ["冷水下锅，水开后再煮 8 分钟，过冷水。"]],
+  corn: ["蒸玉米", ["玉米 1根"], ["水开后蒸 15–20 分钟，或者直接水煮。"]],
+  hongshu: ["蒸红薯", ["红薯 100g"], ["切成两段，水开后蒸 20–25 分钟，筷子能扎透就好。"]],
+  apple: ["苹果", ["苹果 1个"]],
+  corn_h: ["半根玉米", ["玉米 0.5根"], ["玉米从中间切开，另一半冷藏留到下次。水开后蒸 15 分钟。"]],
+  tomato_s: ["小番茄", ["小番茄 100g"]],
+  yogurt: ["无糖酸奶", ["无糖酸奶 150g"], ["看配料表，选没有白砂糖的。"]],
+  milk: ["牛奶", ["牛奶 200ml"]],
+  nuts: ["原味坚果", ["原味坚果 10g"], ["约 8 颗杏仁或 2 个核桃，买原味的，不要盐焗或蜂蜜味。"]],
+  cuke_raw: ["生黄瓜", ["黄瓜 1根"]],
+
+  heijiao: ["黑椒鸡胸", ["鸡胸肉 150g"], ["鸡胸斜切成 1cm 厚的片，用刀背拍松。", "加 1 勺生抽、黑胡椒、少许淀粉抓匀，腌 15 分钟。", "不粘锅刷一层薄油，中小火每面煎 3 分钟。"]],
+  lusun: ["蒜蓉芦笋", ["芦笋 200g"], ["削掉根部的老皮，切段。", "开水加少许盐，焯 1 分钟捞出。", "少油爆香蒜末，下芦笋炒 1 分钟，加盐。"]],
+  fqdf: ["番茄豆腐汤", ["番茄 1个", "北豆腐 150g"], ["番茄切块，豆腐切小方块。", "少油把番茄炒出汁，加 2 碗水煮开。", "放豆腐，小火煮 5 分钟，加盐和葱花。"]],
+  youmaicai: ["清炒油麦菜", ["油麦菜 200g"], ["洗净切段。", "热锅少油爆蒜末，大火下菜炒 1 分钟变软，加盐马上出锅。"]],
+  qjnr: ["青椒炒牛肉", ["瘦牛肉 120g", "青椒 1个"], ["牛肉逆着纹理切薄片，加生抽、淀粉和 1 勺水抓匀，腌 10 分钟。", "青椒切块。", "少油大火把牛肉炒到变色盛出，再炒青椒 1 分钟，倒回牛肉，加生抽调味。"]],
+  shengcai: ["蚝油生菜", ["生菜 200g"], ["生菜开水烫 20 秒，捞出摆盘。", "少油炒香蒜末，加 1 勺蚝油和 2 勺水煮开，浇在生菜上。"]],
+  xrhd: ["虾仁滑蛋", ["虾仁 100g", "鸡蛋 1个"], ["虾仁加料酒、少许盐和淀粉抓匀。", "鸡蛋打散，加 1 勺水。", "少油把虾仁炒到变红，倒入蛋液，小火推到刚凝固就出锅。"]],
+  huanggua: ["凉拌黄瓜", ["黄瓜 1根"], ["黄瓜拍碎切段。", "加蒜末、2 勺醋、1 勺生抽、几滴香油拌匀，放 10 分钟入味。"]],
+  jisimian: ["鸡丝拌荞麦面", ["荞麦面 50g", "鸡胸肉 120g", "黄瓜 1根", "绿豆芽 100g"], ["鸡胸冷水下锅，放姜片，水开后转小火煮 10 分钟，关火焖 5 分钟，晾凉撕成丝。", "荞麦面煮 4–5 分钟，过凉水；豆芽焯 1 分钟；黄瓜切丝。", "2 勺生抽、1 勺醋、蒜末，喜欢辣可以加一点辣椒油，全部拌匀。"]],
+  basha: ["清蒸巴沙鱼", ["巴沙鱼 200g"], STEAM_FISH],
+  bocai: ["蒜蓉菠菜", ["菠菜 200g"], ["菠菜开水焯 30 秒（去涩味），捞出挤干。", "少油爆香蒜末，下菠菜翻炒几下，加盐。"]],
+  fqnr: ["番茄炖牛肉", ["瘦牛肉 120g", "番茄 1个"], ["牛肉切块，冷水下锅焯掉血沫。", "番茄切块，少油炒出汁，加牛肉和热水，水要没过牛肉。", "小火炖 1 小时（高压锅 25 分钟），加盐。可以一次多炖几份冷冻。"]],
+  salad: ["鸡胸蔬菜沙拉", ["鸡胸肉 120g", "生菜 150g", "小番茄 100g"], ["鸡胸按「鸡丝拌荞麦面」的方法煮熟切块。", "生菜撕小块，小番茄对半切。", "油醋汁：2 勺醋、1 勺生抽、1 小勺橄榄油、黑胡椒。不要用沙拉酱。"]],
+  xghj: ["香菇滑鸡", ["鸡胸肉 150g", "香菇 6朵"], ["鸡胸切小块，加生抽、蚝油、淀粉腌 15 分钟。", "香菇切片，和鸡肉拌在一起铺在盘里。", "水开后蒸 15 分钟，撒葱花。"]],
+  helandou: ["清炒荷兰豆", ["荷兰豆 200g"], ["撕掉两边的筋。", "开水焯 1 分钟。", "少油爆蒜，大火炒 1 分钟，加盐。"]],
+  xrdf: ["虾仁烩豆腐", ["虾仁 100g", "北豆腐 150g"], ["豆腐切块；虾仁加料酒、淀粉抓一下。", "锅里加半碗水，放豆腐、1 勺生抽、1 勺蚝油，煮 3 分钟。", "放虾仁煮到变红，淋少许水淀粉勾薄芡。"]],
+  qincai: ["芹菜炒肉丝", ["猪里脊 120g", "芹菜 150g"], ["里脊切丝，加生抽、淀粉腌 10 分钟；芹菜切段。", "少油把肉丝炒到变色盛出。", "炒芹菜 1 分钟，倒回肉丝，加盐和生抽。"]],
+  fqdt: ["番茄蛋汤", ["番茄 1个", "鸡蛋 1个"], ["番茄切块，少油炒软，加 2 碗水煮开。", "蛋液细细倒进去，等 10 秒再搅，加盐和葱花。"]],
+  sigua: ["蒜蓉丝瓜", ["丝瓜 1根"], ["丝瓜刮皮，切滚刀块。", "少油爆蒜末，下丝瓜炒 2 分钟，加盐。丝瓜会自己出水，不用加水。"]],
+  nrmian: ["牛肉荞麦汤面", ["荞麦面 50g", "瘦牛肉 100g", "生菜 150g"], ["牛肉切薄片，加生抽、淀粉腌 10 分钟。", "烧一大碗水，下荞麦面煮 3 分钟。", "下牛肉片煮 1 分钟到变色，再放生菜烫软，用生抽、盐、胡椒调味。"]],
+  jidangeng: ["鸡蛋羹", ["鸡蛋 2个"], ["鸡蛋打散，加 1.5 倍的温水和少许盐，搅匀后撇掉泡沫。", "盖一个盘子或保鲜膜，水开后中小火蒸 10 分钟。", "出锅淋几滴生抽。"]],
+  xgxhl: ["香菇炒西葫芦", ["香菇 4朵", "西葫芦 1根"], ["西葫芦、香菇都切片。", "少油先炒香菇 1 分钟，再下西葫芦炒 2 分钟，加生抽和盐。"]],
+  xihulu: ["清炒西葫芦", ["西葫芦 1根"], ["西葫芦切片。", "少油爆蒜，下西葫芦炒 2 分钟到微软，加盐。"]],
+  gongbao: ["少油宫保鸡丁", ["鸡胸肉 150g", "黄瓜 1根", "胡萝卜 0.5根"], ["鸡胸切丁，加生抽、淀粉腌 10 分钟；黄瓜、胡萝卜切丁。", "调汁：生抽、醋各 1 勺，少许零卡糖，1 小勺淀粉，3 勺水。", "少油炒鸡丁变色，下胡萝卜炒 1 分钟，再下黄瓜，倒入调汁炒到浓稠。"]],
+  dgxr: ["冬瓜虾仁汤", ["冬瓜 250g", "虾仁 100g"], ["冬瓜切薄片，加水煮 5 分钟到透明。", "放虾仁煮 2 分钟，加盐、白胡椒、葱花。"]],
+  muer: ["凉拌木耳", ["干木耳 10g"], ["木耳冷水泡 2 小时，撕成小朵。泡发的木耳别放过夜。", "开水煮 3 分钟，过凉水。", "加蒜末、醋、生抽、少许辣椒拌匀。"]],
+  ycnr: ["洋葱炒牛肉", ["瘦牛肉 120g", "洋葱 0.5个"], ["牛肉逆着纹理切片，加生抽、淀粉腌 10 分钟；洋葱切丝。", "少油大火炒牛肉变色盛出。", "炒洋葱到微软，倒回牛肉，加生抽和黑胡椒。"]],
+  jianlongli: ["香煎龙利鱼", ["龙利鱼 200g"], ["鱼柳解冻后吸干水，撒盐和黑胡椒，拍一层薄淀粉。", "不粘锅刷油，中火每面煎 3 分钟。", "有柠檬可以挤一点。"]],
+  fqjdm: ["番茄鸡蛋荞麦面", ["荞麦面 50g", "番茄 1个", "鸡蛋 2个", "油麦菜 100g"], ["鸡蛋炒熟盛出。", "少油把番茄炒出汁，加水煮开，下荞麦面煮 4 分钟。", "放回鸡蛋，加油麦菜烫 30 秒，加盐。"]],
+  roubing: ["豆腐蒸肉饼", ["猪里脊 100g", "北豆腐 150g"], ["里脊剁成肉末（买的时候可以请摊主帮忙绞），豆腐压碎挤掉水。", "加生抽、姜末、少许淀粉，朝一个方向搅到起胶。", "压成饼铺在盘里，水开后蒸 15 分钟。"]],
+  douya: ["醋溜豆芽", ["绿豆芽 200g"], ["大火少油爆蒜，下豆芽翻炒 1 分钟。", "沿锅边淋 1 勺醋，加盐，保持脆口。"]],
+  hlbjd: ["胡萝卜炒鸡丁", ["鸡胸肉 150g", "胡萝卜 0.5根"], ["鸡胸切丁，加生抽、淀粉腌 10 分钟；胡萝卜切小丁。", "少油先炒胡萝卜 2 分钟，再下鸡丁炒熟。", "加生抽、盐、黑胡椒。"]],
+  hjnr: ["黑椒牛肉粒", ["瘦牛肉 120g", "洋葱 0.5个"], ["牛肉切 2cm 的小块，加生抽、黑胡椒、淀粉腌 15 分钟；洋葱切块。", "平底锅少油，大火把牛肉粒每面煎 30 秒，盛出。", "炒洋葱到微软，倒回牛肉，撒黑胡椒碎。"]],
+  dgdf: ["冬瓜豆腐汤", ["冬瓜 250g", "北豆腐 150g"], ["冬瓜切片，豆腐切块。", "加水煮 8 分钟，加盐、白胡椒、葱花。"]],
+  mecrp: ["木耳炒肉片", ["猪里脊 120g", "干木耳 5g"], ["木耳提前泡发；里脊切薄片，加生抽、淀粉腌 10 分钟。", "少油把肉片炒到变色盛出。", "下木耳炒 1 分钟（容易溅油，可以盖一下锅盖），倒回肉片，加生抽和蒜末。"]],
+  longli: ["清蒸龙利鱼", ["龙利鱼 200g"], STEAM_FISH],
+};
+
+// 早餐不放奶和豆制品，奶类放在下午加餐
+const B = { oat: ["oat", "egg2", "tomato_s"], bread: ["bread", "egg2", "cuke_raw"], corn: ["corn", "egg2"], potato: ["hongshu", "egg2", "tomato_s"] };
+const S = { yogurt: ["yogurt"], nuts: ["milk", "nuts"], apple: ["apple"], cuke: ["milk"] };
+const day = (b, s, l, d) => ({ b, l, d, s });
+const WEEKS = [
+  [
+    day(B.oat, S.yogurt, ["rice", "heijiao", "lusun"], ["fqdf", "youmaicai"]),
+    day(B.bread, S.nuts, ["rice", "qjnr", "shengcai"], ["xrhd", "huanggua", "corn_h"]),
+    day(B.corn, S.apple, ["jisimian"], ["basha", "bocai", "hongshu"]),
+    day(B.oat, S.yogurt, ["rice", "fqnr", "bocai"], ["salad", "egg"]),
+    day(B.bread, S.cuke, ["rice", "xghj", "helandou"], ["xrdf", "shengcai"]),
+    day(B.potato, S.nuts, ["rice", "qincai", "fqdt"], ["basha", "sigua"]),
+    day(B.corn, S.apple, ["nrmian"], ["jidangeng", "xgxhl", "hongshu"]),
+  ],
+  [
+    day(B.bread, S.yogurt, ["rice", "gongbao", "youmaicai"], ["dgxr", "muer", "hongshu"]),
+    day(B.oat, S.nuts, ["rice", "ycnr", "sigua"], ["jianlongli", "xihulu"]),
+    day(B.potato, S.apple, ["fqjdm"], ["roubing", "douya"]),
+    day(B.bread, S.yogurt, ["rice", "hlbjd", "lusun"], ["xrhd", "shengcai", "hongshu"]),
+    day(B.oat, S.cuke, ["rice", "hjnr", "youmaicai"], ["dgdf", "muer", "huanggua"]),
+    day(B.corn, S.nuts, ["rice", "mecrp", "helandou"], ["longli", "xihulu"]),
+    day(B.potato, S.apple, ["jisimian"], ["fqdf", "youmaicai", "egg", "hongshu"]),
+  ],
+];
+// 每单位热量 kcal（g/ml 按每克，个/根/片/朵按每个），参考中国食物成分表的可食部分
+const K = { 糙米: 3.5, 大米: 3.46, 燕麦: 3.7, 全麦面包: 90, 鸡蛋: 70, 玉米: 160, 红薯: 0.86, 苹果: 100, 小番茄: 0.25, 无糖酸奶: 0.7, 牛奶: 0.6, 原味坚果: 6, 黄瓜: 30, 鸡胸肉: 1.33, 瘦牛肉: 1.2, 猪里脊: 1.55, 虾仁: 0.9, 巴沙鱼: 0.9, 龙利鱼: 0.8, 北豆腐: 1.0, 荞麦面: 3.4, 番茄: 35, 芦笋: 0.2, 荷兰豆: 0.3, 丝瓜: 50, 生菜: 0.15, 菠菜: 0.28, 青椒: 25, 芹菜: 0.17, 香菇: 4, 油麦菜: 0.15, 胡萝卜: 60, 冬瓜: 0.12, 洋葱: 80, 西葫芦: 55, 绿豆芽: 0.18, 干木耳: 2.6 };
+const OIL = 15, TARGET = 1240; // 每天烹饪油 15g ≈ 135 kcal，算在总量里
+const kcal = d => OIL * 9 + ["b", "l", "d", "s"].flatMap(k => d[k]).flatMap(k => D[k][1]).reduce((sum, it) => { const [n, q] = parse(it); return sum + K[n] * q; }, 0);
+// 「换一批」：按方案号用固定随机数搭配，同一个号在任何手机上结果都一样；0 是上面手排的默认方案
+const POOL = {
+  lunchMain: ["heijiao", "qjnr", "fqnr", "xghj", "qincai", "gongbao", "ycnr", "hlbjd", "hjnr", "mecrp"],
+  noodle: ["jisimian", "nrmian", "fqjdm"],
+  dinnerMain: ["fqdf", "xrhd", "basha", "salad", "xrdf", "jidangeng", "dgxr", "jianlongli", "roubing", "dgdf", "longli"],
+  veg: ["lusun", "youmaicai", "shengcai", "huanggua", "bocai", "helandou", "sigua", "xgxhl", "xihulu", "muer", "douya"],
+};
+const rng = seed => () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+function plan(seed) {
+  if (!seed) return WEEKS;
+  const r = rng(seed), pick = a => a[Math.floor(r() * a.length)];
+  const deck = k => { let a = []; return () => { if (!a.length) a = [...POOL[k]].sort(() => r() - .5); return a.pop(); }; }; // 洗牌发完再洗，菜尽量不重复
+  const lunch = deck("lunchMain"), noodle = deck("noodle"), dinner = deck("dinnerMain"), veg = deck("veg");
+  return [0, 1].map(() => Array.from({ length: 7 }, () => {
+    const v1 = veg(); let v2 = veg(); if (v2 === v1) v2 = veg();
+    const l = r() < .25 ? [noodle()] : ["rice", lunch(), v1];
+    const d = [dinner(), v2], off = o => Math.abs(kcal(o) - TARGET);
+    // 加餐和晚饭主食挑最接近目标热量的组合；还偏太多就连早餐一起换
+    const best = bs => bs.flatMap(b => Object.values(S).flatMap(s => [[], ["corn_h"], ["hongshu"]].map(x => day(b, s, l, [...d, ...x]))))
+      .reduce((a, o) => off(o) < off(a) ? o : a);
+    const first = best([pick(Object.values(B))]);
+    return off(first) > TARGET * .08 ? best(Object.values(B)) : first;
+  }));
+}
+const MEALS = [["b", "早餐", "起床 30–60 分钟后"], ["l", "午餐", ""], ["s", "加餐", "下午 3–4 点"], ["d", "晚餐", "睡前 3 小时吃完"]];
+const DAYS = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"];
+const CATS = {
+  "肉蛋海鲜": ["鸡胸肉", "瘦牛肉", "猪里脊", "虾仁", "巴沙鱼", "龙利鱼", "鸡蛋"],
+  "蔬菜": ["芦笋", "荷兰豆", "丝瓜", "生菜", "菠菜", "番茄", "小番茄", "青椒", "黄瓜", "芹菜", "香菇", "油麦菜", "胡萝卜", "冬瓜", "洋葱", "西葫芦", "绿豆芽"],
+  "主食": ["糙米", "大米", "荞麦面", "全麦面包", "燕麦", "红薯", "玉米"],
+  "豆制品 · 奶": ["北豆腐", "牛奶", "无糖酸奶"],
+  "水果 · 坚果 · 干货": ["苹果", "香蕉", "原味坚果", "干木耳"],
+};
+// 十字花科蔬菜和海藻一律不用
+const AVOID = ["西兰花", "花菜", "菜心", "卷心菜", "包菜", "上海青", "青菜", "小白菜", "白菜", "芥蓝", "白萝卜", "海带", "紫菜", "豆浆"];
+const parse = it => { const [, name, qty, unit] = it.match(/^(.+) ([\d.]+)(\D*)$/); return [name, +qty, unit]; };
+
+function totals(days) {
+  const t = new Map(); // "名称|单位" -> 数量
+  for (const d of days) for (const k of ["b", "l", "d", "s"]) for (const key of d[k]) for (const it of D[key][1]) {
+    const [name, qty, unit] = parse(it);
+    t.set(name + "|" + unit, (t.get(name + "|" + unit) || 0) + qty);
+  }
+  return t;
+}
+
+// 自检：第 1 周鸡蛋 = 早餐 7×2 + 正餐 (1+1+1+2) = 19 个；所有食材都有分类、都不在避开名单
+console.assert(totals(WEEKS[0]).get("鸡蛋|个") === 19, "egg total mismatch");
+const known = new Set(Object.values(CATS).flat());
+for (let seed = 0; seed <= 200; seed++) for (const w of plan(seed)) for (const d of w) {
+  const k = kcal(d);
+  console.assert(Math.abs(k - TARGET) <= TARGET * .1, `seed ${seed} kcal ${Math.round(k)}`);
+}
+for (let seed = 0; seed <= 50; seed++) for (const w of plan(seed)) for (const d of w) for (const k of ["b", "l", "d", "s"]) for (const key of d[k]) {
+  console.assert(D[key], "unknown dish: " + key);
+  for (const it of D[key][1]) {
+    const name = parse(it)[0];
+    console.assert(known.has(name), "uncategorized: " + it);
+    console.assert(!AVOID.some(a => name.includes(a)), "avoided item: " + it);
+  }
+}
+
+const store = {
+  get(k, dflt) { try { const v = JSON.parse(localStorage.getItem(k)); return v ?? dflt; } catch { return dflt; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
+};
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const $ = id => document.getElementById(id);
+const TODAY = (new Date().getDay() + 6) % 7;
+const state = { view: "menu", week: store.get("diet-week", 0), day: TODAY, range: "all", seed: store.get("diet-seed", 0) };
+let PLAN = plan(state.seed);
+if (["menu", "shop", "swap"].includes(location.hash.slice(1))) state.view = location.hash.slice(1);
+
+const pressed = (box, attr, val) => $(box).querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset[attr] === String(val)));
+
+function dishHTML(key) {
+  const [name, items, steps] = D[key];
+  const amt = items.map(it => it.replace(" ", "")).join("、");
+  if (!steps) return `<details class="dish"><summary><span class="dish-name">${esc(name)}<span class="dish-amt">${esc(amt)}</span></span></summary></details>`;
+  const search = "https://www.xiachufang.com/search/?keywords=" + encodeURIComponent(name.replace(/ ×\d/, ""));
+  return `<details class="dish"><summary><span class="dish-name">${esc(name)}<span class="dish-amt">${esc(amt)}</span></span><span class="more">做法</span></summary>
+    <div class="how"><ol>${steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol>
+    <a href="${search}" target="_blank" rel="noopener">在下厨房看更多「${esc(name)}」的做法 →</a></div></details>`;
+}
+
+function renderMenu() {
+  $("days").innerHTML = DAYS.map((d, i) =>
+    `<button data-day="${i}" class="${i === TODAY ? "today" : ""}" aria-pressed="${i === state.day}">${d}<small>${i === TODAY ? "今天" : "&nbsp;"}</small></button>`).join("");
+  $("seed").value = state.seed;
+  const d = PLAN[state.week][state.day];
+  $("kcal").textContent = `这天约 ${Math.round(kcal(d) / 10) * 10} kcal（含 ${OIL}g 烹饪油）`;
+  $("meals").innerHTML = MEALS.map(([k, label, hint]) => `
+    <article class="meal"><div class="meal-head"><h2>${label}</h2><span>${hint}</span></div>
+      ${d[k].map(dishHTML).join("")}</article>`).join("");
+}
+
+const shopHTML = (t, checked = {}) => Object.entries(CATS).map(([cat, names]) => {
+  const rows = [...t].filter(([k]) => names.includes(k.split("|")[0]));
+  if (!rows.length) return "";
+  return `<h3>${cat}</h3>` + rows.map(([k, q]) => {
+    const [name, unit] = k.split("|");
+    return `<label><span class="nm"><input type="checkbox" data-k="${esc(k)}" ${checked[k] ? "checked" : ""}><span>${esc(name)}</span></span><span class="q">${+q.toFixed(1)}${esc(unit)}</span></label>`;
+  }).join("");
+}).join("");
+
+// 打印版（#print 或 #print1234 指定方案号）：给没法用网页的人导出 PDF，所有内容平铺
+function renderPrint(seed) {
+  const p = plan(seed), used = new Set();
+  document.querySelector("nav.bar").hidden = true;
+  const weeks = p.map((w, wi) => `
+    <section class="pweek"><h2 class="ptitle">第 ${wi + 1} 周${seed ? `（方案 ${seed}）` : ""}</h2>
+      ${w.map((d, i) => `<div class="pday"><h3>${DAYS[i]}<span>约 ${Math.round(kcal(d) / 10) * 10} kcal</span></h3>
+        ${MEALS.map(([k, label]) => `<div class="prow"><b>${label}</b><span>${d[k].map(key => { used.add(key); return esc(D[key][0]) + `<small>${esc(D[key][1].map(it => it.replace(" ", "")).join("、"))}</small>`; }).join("；")}</span></div>`).join("")}
+      </div>`).join("")}
+      <h2 class="ptitle">第 ${wi + 1} 周采购清单</h2><div class="shop">${shopHTML(totals(w))}</div>
+    </section>`).join("");
+  const recipes = [...used].filter(k => D[k][2]).map(k => `<div class="precipe"><h3>${esc(D[k][0])}<small>${esc(D[k][1].map(it => it.replace(" ", "")).join("、"))}</small></h3><ol>${D[k][2].map(s => `<li>${esc(s)}</li>`).join("")}</ol></div>`).join("");
+  document.querySelector("main").innerHTML = weeks + `<section class="pweek"><h2 class="ptitle">做法</h2><div class="precipes">${recipes}</div></section>` + document.querySelector(".callout").outerHTML;
+}
+
+function renderShop() {
+  const w = PLAN[state.week];
+  const days = state.range === "a" ? w.slice(0, 3) : state.range === "b" ? w.slice(3) : w;
+  const t = totals(days);
+  const key = `diet-checked-s${state.seed}-w${state.week}-${state.range}`;
+  const checked = store.get(key, {});
+  $("shop").innerHTML = shopHTML(t, checked);
+  const done = () => { $("progress").textContent = `已买 ${[...t.keys()].filter(k => checked[k]).length} / ${t.size} 样`; };
+  done();
+  $("shop").onchange = e => { checked[e.target.dataset.k] = e.target.checked; store.set(key, checked); done(); };
+  $("reset").onclick = () => { store.set(key, {}); renderShop(); };
+}
+
+function render() {
+  pressed("views", "view", state.view);
+  pressed("weeks", "week", state.week);
+  pressed("ranges", "range", state.range);
+  for (const v of ["menu", "shop", "swap"]) $("v-" + v).hidden = v !== state.view;
+  $("weeks").hidden = state.view === "swap";
+  if (state.view === "menu") renderMenu();
+  if (state.view === "shop") renderShop();
+}
+
+$("views").onclick = e => { const v = e.target.closest("button")?.dataset.view; if (v) { state.view = v; history.replaceState(null, "", "#" + v); render(); scrollTo(0, 0); } };
+$("weeks").onclick = e => { const w = e.target.closest("button")?.dataset.week; if (w) { state.week = +w; store.set("diet-week", state.week); render(); } };
+const setSeed = s => { state.seed = Math.max(0, Math.floor(+s) || 0); store.set("diet-seed", state.seed); PLAN = plan(state.seed); render(); };
+$("reroll").onclick = () => setSeed(1 + Math.floor(Math.random() * 9999));
+$("seed").onchange = e => setSeed(e.target.value);
+$("ranges").onclick =e => { const r = e.target.closest("button")?.dataset.range; if (r) { state.range = r; render(); } };
+$("days").onclick = e => { const d = e.target.closest("button")?.dataset.day; if (d) { state.day = +d; renderMenu(); } };
+const printSeed = location.hash.match(/^#print(\d*)$/);
+if (printSeed) renderPrint(+printSeed[1] || 0); else render();
+</script>
+
+</body>
+</html>
