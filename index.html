@@ -156,12 +156,9 @@ details[open] .more::after { content: " ▴"; }
 
   <section id="v-shop" hidden>
     <div style="display:grid;gap:12px">
-      <div class="seg" id="ranges" style="align-self:start">
-        <button data-range="all">整周</button>
-        <button data-range="a">周一–周三</button>
-        <button data-range="b">周四–周日</button>
-      </div>
-      <p class="note">叶菜放不了几天，建议分两次买：周一买前 3 天的，周四再补。肉可以一次买齐，分装冷冻。</p>
+      <div class="days" id="shopDays"></div>
+      <div class="progress"><span>点选要买哪几天的菜，可以多选</span><span><button id="pickAll">整周</button><button id="pickNone">都不选</button></span></div>
+      <p class="note">叶菜放不了几天，建议一次买 2–3 天的；肉可以一次买齐，分装冷冻。</p>
       <div class="progress"><span id="progress"></span><button id="reset">清空勾选</button></div>
       <div class="shop" id="shop"></div>
       <p class="note"><b>常备调料（不在清单里，家里没有就补）：</b>食用油、生抽、蚝油、醋、盐、黑胡椒、白胡椒、料酒、淀粉、葱、姜、蒜、蒸鱼豉油、零卡糖（可选）</p>
@@ -361,7 +358,7 @@ const store = {
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const $ = id => document.getElementById(id);
 const TODAY = (new Date().getDay() + 6) % 7;
-const state = { view: "menu", week: store.get("diet-week", 0), day: TODAY, range: "all", seed: store.get("diet-seed", 0) };
+const state = { view: "menu", week: store.get("diet-week", 0), day: TODAY, pick: DAYS.map(() => true), seed: store.get("diet-seed", 0) };
 let PLAN = plan(state.seed);
 if (["menu", "shop", "swap"].includes(location.hash.slice(1))) state.view = location.hash.slice(1);
 
@@ -414,11 +411,12 @@ function renderPrint(seed) {
 
 function renderShop() {
   const w = PLAN[state.week];
-  const days = state.range === "a" ? w.slice(0, 3) : state.range === "b" ? w.slice(3) : w;
-  const t = totals(days);
-  const key = `diet-checked-s${state.seed}-w${state.week}-${state.range}`;
+  $("shopDays").innerHTML = DAYS.map((d, i) =>
+    `<button data-day="${i}" class="${i === TODAY ? "today" : ""}" aria-pressed="${state.pick[i]}">${d}<small>${i === TODAY ? "今天" : "&nbsp;"}</small></button>`).join("");
+  const t = totals(w.filter((_, i) => state.pick[i]));
+  const key = `diet-checked-s${state.seed}-w${state.week}-${state.pick.map(Number).join("")}`;
   const checked = store.get(key, {});
-  $("shop").innerHTML = shopHTML(t, checked);
+  $("shop").innerHTML = t.size ? shopHTML(t, checked) : `<p class="note" style="padding-block:12px">还没选日子。点上面的周几，清单就会出来。</p>`;
   const done = () => { $("progress").textContent = `已买 ${[...t.keys()].filter(k => checked[k]).length} / ${t.size} 样`; };
   done();
   $("shop").onchange = e => { checked[e.target.dataset.k] = e.target.checked; store.set(key, checked); done(); };
@@ -428,7 +426,6 @@ function renderShop() {
 function render() {
   pressed("views", "view", state.view);
   pressed("weeks", "week", state.week);
-  pressed("ranges", "range", state.range);
   for (const v of ["menu", "shop", "swap"]) $("v-" + v).hidden = v !== state.view;
   $("weeks").hidden = state.view === "swap";
   if (state.view === "menu") renderMenu();
@@ -440,7 +437,9 @@ $("weeks").onclick = e => { const w = e.target.closest("button")?.dataset.week; 
 const setSeed = s => { state.seed = Math.max(0, Math.floor(+s) || 0); store.set("diet-seed", state.seed); PLAN = plan(state.seed); render(); };
 $("reroll").onclick = () => setSeed(1 + Math.floor(Math.random() * 9999));
 $("seed").onchange = e => setSeed(e.target.value);
-$("ranges").onclick =e => { const r = e.target.closest("button")?.dataset.range; if (r) { state.range = r; render(); } };
+$("shopDays").onclick = e => { const d = e.target.closest("button")?.dataset.day; if (d) { state.pick[d] = !state.pick[d]; renderShop(); } };
+$("pickAll").onclick = () => { state.pick = DAYS.map(() => true); renderShop(); };
+$("pickNone").onclick = () => { state.pick = DAYS.map(() => false); renderShop(); };
 $("days").onclick = e => { const d = e.target.closest("button")?.dataset.day; if (d) { state.day = +d; renderMenu(); } };
 const printSeed = location.hash.match(/^#print(\d*)$/);
 if (printSeed) renderPrint(+printSeed[1] || 0); else render();
